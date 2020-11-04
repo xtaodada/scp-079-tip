@@ -19,7 +19,6 @@
 import logging
 from copy import deepcopy
 from re import search
-from re2 import compile
 from typing import Dict, List, Set, Union
 
 from pyrogram import Client
@@ -189,10 +188,8 @@ def kws_add(client: Client, message: Message, gid: int, key: str, text: str, the
 
         # Check regex patterns
         try:
-            "regex" in modes and [compile(word) for word in words]
-        except Exception as e:
-            return command_error(client, message, lang(f"action_kws_{the_type}"), lang("command_para"),
-                                 detail=str(e) and lang("error_regex"), report=False, private=True)
+            if "regex" in modes:
+                return
 
         # Get the actions
         actions = {a.strip() for a in text_list[3].split() if a.strip()}
