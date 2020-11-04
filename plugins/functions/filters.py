@@ -18,7 +18,6 @@
 
 import logging
 import re
-import re2
 from copy import deepcopy
 from string import ascii_lowercase
 from typing import Match, Optional, Union
@@ -692,9 +691,7 @@ def is_keyword_string(word: str, text: str, exact: bool, case: bool, regex: bool
         text = text.strip()
         origin = word
 
-        if regex and re2.search(word, text):
-            return origin
-        elif regex:
+        if regex:
             return ""
 
         if not case:
