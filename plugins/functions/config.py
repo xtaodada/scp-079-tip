@@ -186,11 +186,6 @@ def kws_add(client: Client, message: Message, gid: int, key: str, text: str, the
             return command_error(client, message, lang(f"action_kws_{the_type}"), lang("command_para"),
                                  lang("error_kws_modes_conflict"), report=False, private=True)
 
-        # Check regex patterns
-        try:
-            if "regex" in modes:
-                return
-
         # Get the actions
         actions = {a.strip() for a in text_list[3].split() if a.strip()}
 
